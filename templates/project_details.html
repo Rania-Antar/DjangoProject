@@ -1,0 +1,47 @@
+
+  {% block header %}
+     <ul class="breadcrumb">
+         <li><a href="{% url 'index' %}">Home</a> <span class="divider">/</span></li>
+         <li><a href="{% url 'liste' %}">Projects</a> <span class="divider">/</span></li>
+         <li class="active">Project details</li>
+    </ul>
+ {% endblock %}
+
+    <table class="table table-striped" border="1">
+            <tbody>
+                <tr>
+                    <td>Project Name</td>
+                    <td>Project Leader</td>
+                    <td>Description</td>
+                    <td>Needs</td>
+                    <td>Time invested By Creator</td>
+                    <td>Members</td>
+                    <td>Time invested By Members</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{ project.nom_du_projet }}</td>
+                    <td>{{ project.createur }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.besoins}}</td>
+                    <td>{{ project.temps_alloue_par_le_createur}}</td>
+                    <td>
+                        <ul>
+                            {% for member in project.get_related_members %}
+                              {# {% for member in project.membres.all %} #}
+                                <li class="label label-success">{{ member }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ project.total_allocated_by_members }}</td>
+                    <td>
+                        <a href="{% url 'edit' project.id %}">
+                            <button type="button" class="btn btn-info">Edit</button>
+                        </a>
+
+                    </td>
+
+                </tr>
+        </tbody>
+    </table>
+

@@ -1,0 +1,29 @@
+{% block content %}
+
+<h1>Add a project proposal</h1>
+{% if msg_erreur %}<p><strong>{{ msg_erreur }}:
+ {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+{% endfor %}
+
+</strong></p>{% endif %}
+
+<form action="{% url 'create' %}" method="POST">
+{% csrf_token %}
+    <div class="container">
+         <div class="form-group" >
+
+                <div>
+                    {{ form.as_p }}
+                </div>
+         </div>
+        <input class="btn btn-primary" type="submit" value="Add Proposal" />
+    </div>
+</form>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,30 @@
+
+{% block content %}
+
+<h1>Add a project proposal</h1>
+
+<form action="{% url 'edit' p_id %}" method="POST">
+{# Django est livré avec une protection simple d’emploi contre les attaques de #}
+    {# type Cross Site Request Forgeries. Lors de l’envoi d’un formulaire par #}
+    {# la méthode POST et la protection CSRF active, vous devez utiliser la #}
+    {# balise de gabarit csrf_token  #}
+{% csrf_token %}
+    <div class="container">
+         <div class="form-group" >
+
+                <div>
+                    {# form.as_table: affiche les composants sous forme de cellules de tableau à l’intérieur de #}
+                    {# balises #}
+                    <tr>
+                        {# {{ form.as_p }} affiche les composants dans des balises <p> #}
+                        {#{{ form.as_ul }} affiche les composants dans des balises <li> #}
+                    {{ form.as_p }}
+                </div>
+
+         </div>
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </div>
+</form>
+{% endblock %}
+{% block footer %}
+{% endblock %}
