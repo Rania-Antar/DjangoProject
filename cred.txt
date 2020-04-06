@@ -1,2 +1,0 @@
-email = "rania.ant92@gmail.com"
-password = "raniaesprit"
